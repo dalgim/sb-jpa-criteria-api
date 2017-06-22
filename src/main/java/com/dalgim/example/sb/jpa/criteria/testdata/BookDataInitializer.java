@@ -17,10 +17,10 @@ public class BookDataInitializer implements TestDataInitializer {
 
     @Override
     public void initialize() {
-        entityManager.persist(create("Book1", "John1", LocalDate.now()));
-        entityManager.persist(create("Book2", "John2", LocalDate.now()));
-        entityManager.persist(create("Book3", "John3", LocalDate.now()));
-        entityManager.persist(create("Book4", "John4", LocalDate.now()));
+        create("Book1", "John1", LocalDate.now());
+        create("Book2", "John2", LocalDate.now());
+        create("Book3", "John3", LocalDate.now());
+        create("Book4", "John4", LocalDate.now());
     }
 
     BookEntity create(String name, String author, LocalDate releaseDate) {
@@ -28,6 +28,7 @@ public class BookDataInitializer implements TestDataInitializer {
         bookEntity.setAuthor(author);
         bookEntity.setName(name);
         bookEntity.setReleaseDate(releaseDate);
+        entityManager.persist(bookEntity);
         return bookEntity;
     }
 }
