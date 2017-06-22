@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public final class BookSpecification {
 
-    public static Specification<BookEntity> hasName(String name) {
+    public static Specification<BookEntity> hasNameLike(String name) {
         return (root, cq, cb) -> cb.like(root.get(BookEntity_.name), name);
     }
 }
