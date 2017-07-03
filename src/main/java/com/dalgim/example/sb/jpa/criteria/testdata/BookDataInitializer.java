@@ -18,7 +18,7 @@ public class BookDataInitializer implements TestDataInitializer {
     @Override
     public void initialize() {
         create("Book1", "John1", LocalDate.now());
-        create("Book2", "John2", LocalDate.now());
+        create("Book2", "John2", LocalDate.now().minusYears(26));
         create("NewBook3", "John3", LocalDate.now());
         create("Book4", "John4", LocalDate.now());
     }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -28,5 +30,13 @@ public class BookSpecificationTest {
     public void shouldReturnBookLikeName() {
         final List<BookEntity> entities = bookRepository.findAll(BookSpecification.hasNameLike("Book%"));
         assertThat(entities.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldReturnBookWhenReleaseDateBeforeDate() throws Exception {
+        LocalDate date = LocalDate.now().minusYears(25);
+
+        final List<BookEntity> entities = bookRepository.findAll(BookSpecification.releaseDateLessOrEqualTo(date));
+        assertThat(entities.size()).isEqualTo(1);
     }
 }
